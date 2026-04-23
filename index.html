@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Contactos</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="img/CONTACT-LIST.png" alt="Icono de Contactos" class="header-icon">
+            <h1>Lista de Contactos</h1>
+            <p class="subtitle">Gestiona tus contactos con fácilidad</p>
+        </header>
+
+        <!-- Formulario para agregar/editar contacto -->
+        <div class="form-container">
+            <h2 id="formTitle">Agregar Nuevo Contacto</h2>
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" placeholder="Ej: Juan" required>
+                        <span class="error-message" id="nombreError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" placeholder="Ej: Pérez" required>
+                        <span class="error-message" id="apellidoError"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" placeholder="Ej: +34 123 456 789" required>
+                        <span class="error-message" id="telefonoError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad:</label>
+                        <input type="text" id="ciudad" placeholder="Ej: Madrid" required>
+                        <span class="error-message" id="ciudadError"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" placeholder="Ej: juan@ejemplo.com" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                </div>
+
+                <div class="form-group gender-group">
+                    <label>Género:</label>
+                    <div class="gender-options">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="masculino" required>
+                            <i class="fas fa-mars"></i> Masculino
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="femenino" required>
+                            <i class="fas fa-venus"></i> Femenino
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="otro" required>
+                            <i class="fas fa-transgender"></i> Otro
+                        </label>
+                    </div>
+                    <span class="error-message" id="genderError"></span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="submitBtn" class="btn btn-primary">Agregar Contacto</button>
+                    <button type="reset" class="btn btn-secondary" id="resetBtn">Limpiar</button>
+                    <button type="button" class="btn btn-danger" id="cancelBtn" style="display: none;">Cancelar Edición</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Spinner de carga. -->
+        <div class="spinner-container" id="spinnerContainer" style="display: none;">
+            <div class="spinner"></div>
+            <p>Cargando...</p>
+        </div>
+
+        <!-- Lista de contactos -->
+        <div class="contacts-container">
+            <h2>Contactos Registrados (<span id="contactCount">0</span>)</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar por nombre, apellido o ciudad...">
+            </div>
+
+            <div id="contactsList" class="contacts-list">
+                <p class="empty-message">No hay contactos aún. ¡Agrega uno ahora!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
