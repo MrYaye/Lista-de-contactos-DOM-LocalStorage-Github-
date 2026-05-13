@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1778642658509,
+    "nombre": "STIVEN",
+    "apellido": "ZAMORA ARIAS",
+    "telefono": "+573115898068",
+    "ciudad": "CALI",
+    "email": "zamorabrayan0722@gmail.com",
+    "genero": "otro",
+    "fechaCreacion": "12/5/2026, 22:24:18",
+    "fechaActualizacion": "12/5/2026, 22:28:47"
+  },
+  {
+    "id": 1778642679080,
+    "nombre": "Juan Manuel",
+    "apellido": "Diosa",
+    "telefono": "3001234567",
+    "ciudad": "cali",
+    "email": "jdiosa12@motogestor.com",
+    "genero": "masculino",
+    "fechaCreacion": "12/5/2026, 22:24:39"
+  },
+  {
+    "id": 1778642866220,
+    "nombre": "Diego Steban",
+    "apellido": "Dulcey Saenz",
+    "telefono": "+57 3127695875",
+    "ciudad": "Cali",
+    "email": "diegodulcey102@gmail.com",
+    "genero": "femenino",
+    "fechaCreacion": "12/5/2026, 22:27:46"
+  }
+]
