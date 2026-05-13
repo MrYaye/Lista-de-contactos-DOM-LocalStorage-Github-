@@ -1,204 +1,130 @@
-# Lista de Contactos - Práctica CRUD con JavaScript Vanilla
+# Lista de Contactos - API con Express y Base de Datos
 
-Una aplicación web moderna para gestionar contactos con operaciones CRUD completas, validación de formularios, almacenamiento local y una interfaz intuitiva.
+Proyecto de tarea: crear una API REST con **Express** y **MariaDB/MySQL** para una aplicación de gestión de contactos.
 
-## Características Principales
+## Descripción
 
-### CRUD Completo
-- **CREATE (Crear)**: Agregar nuevos contactos con validación
-- **READ (Leer)**: Mostrar lista de contactos con búsqueda en tiempo real
-- **UPDATE (Actualizar)**: Editar contactos existentes
-- **DELETE (Eliminar)**: Eliminar contactos con confirmación
+Esta aplicación permite:
+- agregar contactos
+- listar contactos
+- editar contactos
+- eliminar contactos
 
-### Validación de Formulario
-- Nombre y apellido: solo letras, mínimo 2 caracteres
-- Teléfono: mínimo 7 dígitos válidos
-- Ciudad: solo letras, mínimo 2 caracteres
-- Email: validación de formato de correo electrónico
-- Género: selección obligatoria
-- Mensajes de error personalizados en tiempo real
+Todo mediante una API en **Express** conectada a una base de datos **MySQL/MariaDB**, y una interfaz en el cliente que consume dicha API.
 
-### Iconos de Género
-- **Masculino**: Color azul con icono de Marte
-- **Femenino**: Color rojo con icono de Venus
-- **Otro**: Color púrpura con icono transgénero
+## Tecnologías utilizadas
 
-### Spinner de Carga
-- Simula el envío de datos a una base de datos
-- Delay de 1.5 segundos al crear/actualizar
-- Delay de 1 segundo al eliminar
-- Interfaz intuitiva con animación de carga
+- Node.js
+- Express
+- MySQL / MariaDB
+- mysql2
+- CORS
+- JavaScript Vanilla
+- HTML y CSS
 
-### LocalStorage
-- Los contactos se guardan automáticamente en el navegador
-- Los datos persisten después de cerrar la página
-- Clave de almacenamiento: `contactos_lista`
-
-### Búsqueda en Tiempo Real
-- Buscar por nombre, apellido o ciudad
-- Sin necesidad de presionar botón de búsqueda
-- Resultados instantáneos mientras escribes
-
-## Tecnologías Utilizadas
-
-- **HTML5**: Estructura semántica
-- **CSS3**: Diseño responsivo con Grid y Flexbox
-- **JavaScript Vanilla**: Sin dependencias externas
-- **LocalStorage API**: Persistencia de datos
-- **Font Awesome 6.4.0**: Iconos profesionales
-
-## Estructura de Archivos
+## Estructura del proyecto
 
 ```
 Lista-Contactos/
-│
-├── index.html          # Estructura HTML de la aplicación
-├── style.css           # Estilos CSS (responsive)
-├── script.js           # Lógica JavaScript (CRUD + validación)
-└── README.md           # Este archivo
+├── contacts.json          # Datos de ejemplo (si aplica)
+├── index.html             # Interfaz cliente
+├── index.js               # Lógica del cliente y consumo de API
+├── package.json           # Dependencias y scripts del proyecto
+├── README.md              # Documentación del proyecto
+├── server.js              # API Express y conexión a la base de datos
+├── style.css              # Estilos de la aplicación
+└── img/                   # Recursos de imagen
 ```
 
-## Cómo Usar
+## Configuración de la base de datos
 
-1. **Abre el archivo `index.html`** en tu navegador web
-2. **Completa el formulario** con los datos del contacto:
-   - Nombre
-   - Apellido
-   - Teléfono
-   - Ciudad
-   - Email
-   - Género
-3. **Haz clic en "Agregar Contacto"**
-4. El contacto aparecerá en la lista con su icono de género
+La base de datos debe llamarse `Lista_Contactos` y la tabla `contacts` debe tener esta estructura:
 
-### Operaciones Disponibles
-
-#### Agregar Contacto
-1. Completa todos los campos del formulario
-2. Haz clic en el botón "Agregar Contacto"
-3. Espera el spinner de carga
-4. El contacto se agregará a la lista
-
-#### Buscar Contacto
-- Usa el campo de búsqueda para filtrar por nombre, apellido o ciudad
-- La búsqueda es en tiempo real
-
-#### Editar Contacto
-1. Haz clic en el botón "Editar" de cualquier contacto
-2. El formulario se llenará con los datos del contacto
-3. Modifica los campos que desees
-4. Haz clic en "Actualizar Contacto"
-
-#### Eliminar Contacto
-1. Haz clic en el botón "Eliminar" de cualquier contacto
-2. Confirma la eliminación en el diálogo
-3. El contacto será eliminado de la lista
-
-#### Limpiar Formulario
-- Haz clic en el botón "Limpiar" para resetear todos los campos
-
-## Conceptos de Programación Practicados
-
-### Manejo del DOM
-```javascript
-- querySelector() / querySelectorAll()
-- addEventListener()
-- classList manipulation
-- innerHTML y textContent
+```sql
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) DEFAULT NULL,
+  `telefono` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `fechaCreacion` datetime DEFAULT NULL,
+  `fechaActualizacion` datetime DEFAULT NULL,
+  `apellido` varchar(255) DEFAULT NULL,
+  `ciudad` varchar(255) DEFAULT NULL,
+  `genero` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### Validación de Formularios
-```javascript
-- Expresiones regulares (RegExp)
-- Validación en tiempo real
-- Mensajes de error dinámicos
-- preventDefault()
+## Instalación
+
+1. Clona o copia el proyecto en tu equipo.
+2. Instala dependencias:
+
+```bash
+npm install
 ```
 
-### LocalStorage
-```javascript
-- JSON.stringify() / JSON.parse()
-- localStorage.setItem()
-- localStorage.getItem()
+3. Asegúrate de tener MySQL o MariaDB instalado y ejecutándose.
+4. Crea la base de datos `Lista_Contactos` y la tabla `contacts` usando el DDL anterior.
+5. Si tu usuario o contraseña de la base de datos son distintos, ajusta `dbConfig` en `server.js`.
+
+## Uso
+
+1. Inicia el servidor:
+
+```bash
+npm start
 ```
 
-### CRUD Operations
-```javascript
-- Crear objetos con timestamp (Date.now())
-- Filtrar arrays con filter()
-- Encontrar elementos con find()
-- Map para renderizar HTML
+2. Abre tu navegador en:
+
+```text
+http://127.0.0.1:3000
 ```
 
-### Manejo de Eventos
-```javascript
-- submit
-- input
-- blur
-- click
-- change (radio buttons)
-```
+3. La aplicación cargará la interfaz y mostrará los contactos almacenados en la base de datos.
 
-## Ejemplos de Validación
+## Endpoints disponibles
 
-### Nombre/Apellido
-- Solo acepta letras y espacios
-- Mínimo 2 caracteres
-- Máximo 50 caracteres
+- `GET /api/contacts` — obtener todos los contactos
+- `POST /api/contacts` — crear un nuevo contacto
+- `PUT /api/contacts/:id` — actualizar un contacto existente
+- `DELETE /api/contacts/:id` — eliminar un contacto
 
-### Teléfono
-- Acepta dígitos, espacios, +, -, ()
-- Mínimo 7 dígitos válidos
-- Ejemplo: +34 123 456 789
+### Ejemplo de payload para crear un contacto
 
-### Email
-- Valida formato estándar
-- Requiere @ y dominio
-- Ejemplo: usuario@ejemplo.com
-
-### Género
-- Campo obligatorio
-- Tres opciones: Masculino, Femenino, Otro
-- Se muestra con icono representativo
-
-## Estructura de Datos de un Contacto
-
-```javascript
+```json
 {
-    id: 1234567890,                           // Timestamp único
-    nombre: "Juan",
-    apellido: "Pérez",
-    telefono: "+34 123 456 789",
-    ciudad: "Madrid",
-    email: "juan@ejemplo.com",
-    genero: "masculino",                      // masculino | femenino | otro
-    fechaCreacion: "20/4/2026 15:30:45",
-    fechaActualizacion: "20/4/2026 16:45:20"  // Solo si fue editado
+  "nombre": "Ana",
+  "apellido": "García",
+  "telefono": "+34 600 123 456",
+  "ciudad": "Madrid",
+  "email": "ana.garcia@example.com",
+  "genero": "femenino"
 }
 ```
 
-## Características de Diseño
+## Validaciones en el cliente
 
-### Colores
-- Gradiente Morado: Encabezado y fondo
-- Azul Primario (#3498db): Acciones principales
-- Rojo (#e74c3c): Acciones peligrosas (eliminar)
-- Verde (#2ecc71): Confirmación
-- Naranja (#f39c12): Edición
+- Nombre y apellido: requeridos, solo letras y espacios
+- Teléfono: requerido, mínimo 7 dígitos válidos
+- Ciudad: requerida, solo letras
+- Email: requerido y formato válido
+- Género: selección obligatoria
 
-### Responsive Design
-- Funciona en desktop, tablet y móvil
-- Grid de tarjetas adaptable
-- Formulario fluido
+## Flujo de trabajo
 
-### Animaciones
-- Tarjetas: deslizamiento suave al crear
-- Botones: efecto hover con elevación
-- Spinner: rotación continua
+1. El cliente envía solicitudes `fetch` a la API de Express.
+2. El servidor valida y ejecuta consultas `INSERT`, `UPDATE`, `DELETE` y `SELECT`.
+3. La base de datos almacena los contactos.
+4. El cliente actualiza la lista en pantalla.
 
-## Datos Locales
+## Notas importantes
 
-Los contactos se almacenan en el navegador usando `localStorage`:
-- Los datos persisten entre sesiones
-- Solo se pueden ver en el mismo navegador
-- Para eliminar: limpiar caché del navegador o usar DevTools
+- No abrir `index.html` con `file://` cuando uses la API.
+- Usa siempre `http://127.0.0.1:3000` para evitar problemas de CORS y rutas.
+- Si modificas la configuración de la base de datos, actualiza `server.js`.
+
+## Autor
+
+- Proyecto preparado para la tarea de Lista de Contactos con API y base de datos.
