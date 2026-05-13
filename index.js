@@ -224,7 +224,7 @@ async function handleFormSubmit(e) {
         renderContacts();
     } catch (error) {
         console.error(error);
-        alert('Ocurrió un error al guardar el contacto. Intenta de nuevo.');
+        alert(`Ocurrió un error al guardar el contacto. Intenta de nuevo.\n${error.message}`);
     } finally {
         hideSpinner();
     }
@@ -288,7 +288,8 @@ async function createContact(data) {
     });
 
     if (!response.ok) {
-        throw new Error('No se pudo crear el contacto');
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.error || 'No se pudo crear el contacto');
     }
 
     const contact = await response.json();
@@ -311,7 +312,8 @@ async function updateContact(id, data) {
     });
 
     if (!response.ok) {
-        throw new Error('No se pudo actualizar el contacto');
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.error || 'No se pudo actualizar el contacto');
     }
 
     const updatedContact = await response.json();
